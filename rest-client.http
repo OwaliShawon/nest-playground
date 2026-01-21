@@ -1,0 +1,28 @@
+### GET
+GET http://localhost:3000/invoice
+
+### POST
+POST http://localhost:3000/invoice
+Content-Type: application/json
+
+{
+  "invoice_no": "INV-001",
+  "date": "2026-01-01",
+  "customer_name": "owali shawon",
+  "invoiceDetails": [
+    {
+      "product_name": "Laptop",
+      "SKU": "LP-001",
+      "quantity": 2,
+      "rate": 100,
+      "amount": 1000
+    },
+    {
+      "product_name": "Mouse",
+      "SKU": "MS-002",
+      "quantity": 1,
+      "rate": 33,
+      "amount": 50
+    }
+  ]
+}

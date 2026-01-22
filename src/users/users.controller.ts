@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, UsePipes, SetMetadata } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  UsePipes,
+  SetMetadata,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 import { ZodValidationPipe } from 'src/core/pipes/zod.pipe';
@@ -10,7 +21,7 @@ import { Roles } from 'src/decorators/roles.decorator';
 @Roles(['superadmin'])
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) {}
 
   @Post()
   @UsePipes(new ZodValidationPipe(createUserDto.createUserSchema))
@@ -40,10 +51,10 @@ export class UsersController {
     return this.usersService.remove(+id);
   }
 
-  @Post("create-many")
+  @Post('create-many')
   // @UsePipes(new ZodValidationPipe(createUserDto.createUserSchema))
   createMany(@Body() createUserDto: any[]) {
-    console.log("Create many", createUserDto)
+    console.log('Create many', createUserDto);
     return this.usersService.createMany(createUserDto);
   }
 }

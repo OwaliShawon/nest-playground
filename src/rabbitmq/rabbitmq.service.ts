@@ -1,4 +1,9 @@
-import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  OnModuleDestroy,
+  OnModuleInit,
+} from '@nestjs/common';
 import * as amqp from 'amqplib';
 import type { RabbitMQConfig } from './rabbitmq.config';
 
@@ -52,12 +57,18 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
     return this.channel;
   }
 
-  async assertExchange(exchange: string, type: 'direct' | 'fanout' | 'topic' | 'headers', durable = true) {
+  async assertExchange(
+    exchange: string,
+    type: 'direct' | 'fanout' | 'topic' | 'headers',
+    durable = true,
+  ) {
     try {
       await this.channel.assertExchange(exchange, type, { durable });
       this.logger.log(`Exchange '${exchange}' asserted`);
     } catch (error) {
-      this.logger.error(`Failed to assert exchange '${exchange}': ${error.message}`);
+      this.logger.error(
+        `Failed to assert exchange '${exchange}': ${error.message}`,
+      );
       throw error;
     }
   }
@@ -75,7 +86,9 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
   async bindQueue(queue: string, exchange: string, routingKey: string) {
     try {
       await this.channel.bindQueue(queue, exchange, routingKey);
-      this.logger.log(`Queue '${queue}' bound to exchange '${exchange}' with routing key '${routingKey}'`);
+      this.logger.log(
+        `Queue '${queue}' bound to exchange '${exchange}' with routing key '${routingKey}'`,
+      );
     } catch (error) {
       this.logger.error(
         `Failed to bind queue '${queue}' to exchange '${exchange}': ${error.message}`,

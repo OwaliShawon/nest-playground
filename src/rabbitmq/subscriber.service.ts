@@ -1,7 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { RabbitMQService } from './rabbitmq.service';
 
-export type MessageHandler = (message: any, ack: () => void, nack: (requeue?: boolean) => void) => Promise<void>;
+export type MessageHandler = (
+  message: any,
+  ack: () => void,
+  nack: (requeue?: boolean) => void,
+) => Promise<void>;
 
 @Injectable()
 export class SubscriberService {
@@ -10,7 +14,11 @@ export class SubscriberService {
 
   constructor(private readonly rabbitMQService: RabbitMQService) {}
 
-  async subscribe(queue: string, handler: MessageHandler, prefetch = 1): Promise<void> {
+  async subscribe(
+    queue: string,
+    handler: MessageHandler,
+    prefetch = 1,
+  ): Promise<void> {
     try {
       const channel = this.rabbitMQService.getChannel();
       await channel.prefetch(prefetch);
@@ -32,14 +40,18 @@ export class SubscriberService {
           this.logger.log(`Message received from queue '${queue}'`);
           await handler(content, ack, nack);
         } catch (error) {
-          this.logger.error(`Error processing message from queue '${queue}': ${error.message}`);
+          this.logger.error(
+            `Error processing message from queue '${queue}': ${error.message}`,
+          );
           nack(true); // Requeue on error
         }
       });
 
       this.logger.log(`Subscribed to queue '${queue}'`);
     } catch (error) {
-      this.logger.error(`Error subscribing to queue '${queue}': ${error.message}`);
+      this.logger.error(
+        `Error subscribing to queue '${queue}': ${error.message}`,
+      );
       throw error;
     }
   }

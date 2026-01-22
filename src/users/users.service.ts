@@ -12,9 +12,7 @@ export class UsersService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private dataSource: DataSource,
-
-
-  ) { }
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     const user = this.userRepository.create(createUserDto);
@@ -37,7 +35,6 @@ export class UsersService {
     return `This action removes a #${id} user`;
   }
 
-
   async createMany(users: CreateUserDto[]) {
     const queryRunner = this.dataSource.createQueryRunner();
 
@@ -45,7 +42,7 @@ export class UsersService {
     await queryRunner.startTransaction();
 
     try {
-      const userEntities = users.map(user =>
+      const userEntities = users.map((user) =>
         this.userRepository.create(user),
       );
 

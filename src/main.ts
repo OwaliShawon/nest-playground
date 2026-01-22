@@ -3,7 +3,10 @@ import { AppModule } from './app.module';
 import { AuthGuard } from './guards/auth.guards';
 import cluster from 'cluster';
 import * as os from 'os';
-import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { HttpExceptionFilter } from './core/filters/http-exception.filter';
 import { ValidationPipe } from './core/pipes/validation.pipe';
@@ -17,7 +20,10 @@ import { ZodValidationPipe } from './core/pipes/zod.pipe';
 // }
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({ logger: true }));
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    new FastifyAdapter({ logger: true }),
+  );
   // app.useGlobalGuards(new AuthGuard)
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter());

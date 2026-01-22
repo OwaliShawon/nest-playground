@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { InvoiceMasterService } from './invoice_master.service';
 import { CreateInvoiceMasterDto } from './dto/create-invoice_master.dto';
 import { UpdateInvoiceMasterDto } from './dto/update-invoice_master.dto';
@@ -6,7 +14,7 @@ import { CacheKey, CacheTTL } from '@nestjs/cache-manager';
 
 @Controller('invoice-master')
 export class InvoiceMasterController {
-  constructor(private readonly invoiceMasterService: InvoiceMasterService) { }
+  constructor(private readonly invoiceMasterService: InvoiceMasterService) {}
 
   @Post()
   create(@Body() createInvoiceMasterDto: any) {
@@ -26,7 +34,10 @@ export class InvoiceMasterController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateInvoiceMasterDto: UpdateInvoiceMasterDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateInvoiceMasterDto: UpdateInvoiceMasterDto,
+  ) {
     return this.invoiceMasterService.update(+id, updateInvoiceMasterDto);
   }
 

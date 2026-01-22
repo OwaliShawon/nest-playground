@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -13,7 +22,8 @@ export class OrdersController {
   constructor(
     private readonly ordersService: OrdersService,
     private readonly productsService: ProductsService,
-    private readonly testProvider: TestProvider) { }
+    private readonly testProvider: TestProvider,
+  ) {}
 
   @Post()
   create(@Body() createOrderDto: CreateOrderDto) {
@@ -44,7 +54,7 @@ export class OrdersController {
     return this.ordersService.remove(+id);
   }
 
-  @Get("products")
+  @Get('products')
   getProducts() {
     return this.productsService.findAll();
   }

@@ -41,7 +41,11 @@ export class PublisherService {
     }
   }
 
-  async publishToQueue(queue: string, message: any, options?: { persistent?: boolean }): Promise<boolean> {
+  async publishToQueue(
+    queue: string,
+    message: any,
+    options?: { persistent?: boolean },
+  ): Promise<boolean> {
     try {
       const channel = this.rabbitMQService.getChannel();
       const messageBuffer = Buffer.from(JSON.stringify(message));
@@ -54,12 +58,16 @@ export class PublisherService {
       if (published) {
         this.logger.log(`Message published to queue '${queue}'`);
       } else {
-        this.logger.warn(`Failed to publish message to queue '${queue}'. Channel buffer full.`);
+        this.logger.warn(
+          `Failed to publish message to queue '${queue}'. Channel buffer full.`,
+        );
       }
 
       return published;
     } catch (error) {
-      this.logger.error(`Error publishing message to queue '${queue}': ${error.message}`);
+      this.logger.error(
+        `Error publishing message to queue '${queue}': ${error.message}`,
+      );
       throw error;
     }
   }

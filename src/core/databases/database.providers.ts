@@ -16,9 +16,10 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [User, Product, InvoiceMaster, InvoiceDetail],
-  migrations: process.env.NODE_ENV === 'production'
-    ? ['dist/core/databases/migrations/*-migrations.js']
-    : ['src/core/databases/migrations/*-migrations.ts'],
+  migrations:
+    process.env.NODE_ENV === 'production'
+      ? ['dist/core/databases/migrations/*-migrations.js']
+      : ['src/core/databases/migrations/*-migrations.ts'],
   synchronize: true,
   logging: true,
 });

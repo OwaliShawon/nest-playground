@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -19,6 +19,9 @@ import KeyvRedis from '@keyv/redis';
 import { Keyv } from 'keyv';
 import { TasksModule } from './tasks/tasks.module';
 // import { CacheableMemory } from 'cacheable';
+import { AlsModule } from './als/als.module';
+import { AsyncLocalStorage } from 'node:async_hooks';
+import { CatsModule } from './cats/cats.module';
 
 @Module({
   imports: [
@@ -29,7 +32,9 @@ import { TasksModule } from './tasks/tasks.module';
       validate: (config) =>
         z
           .object({
-            NODE_ENV: z.enum(['development', 'production', 'test', 'provision']).default('development'),
+            NODE_ENV: z
+              .enum(['development', 'production', 'test', 'provision'])
+              .default('development'),
             PORT: z.coerce.number().default(3000),
             DB_HOST: z.string(),
             DB_PORT: z.coerce.number(),
@@ -80,9 +85,32 @@ import { TasksModule } from './tasks/tasks.module';
     RedisModule,
     CoreRedisModule,
     RabbitMQExampleModule,
-    TasksModule
+    TasksModule,
+    AlsModule,
+    CatsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  constructor(
+    // inject the AsyncLocalStorage in the module constructor,
+    private readonly als: AsyncLocalStorage<any>,
+  ) {}
+
+  configure(consumer: MiddlewareConsumer) {
+    // bind the middleware,
+    consumer
+      .apply((req: any, res: any, next: any) => {
+        // populate the store with some default values
+        // based on the request,
+        const store = {
+          userId: req.headers['x-user-id'],
+        };
+        // and pass the "next" function as callback
+        // to the "als.run" method together with the store.
+        this.als.run(store, () => next());
+      })
+      .forRoutes('*path');
+  }
+}

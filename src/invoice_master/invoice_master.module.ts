@@ -9,4 +9,4 @@ import { InvoiceMaster } from './entities/invoice_master.entity';
   controllers: [InvoiceMasterController],
   providers: [InvoiceMasterService],
 })
-export class InvoiceMasterModule { }
+export class InvoiceMasterModule {}

@@ -10,7 +10,7 @@ export const redisProvider: Provider = {
       url: 'redis://localhost:6379',
     });
 
-    client.on('error', err => console.error('Redis error', err));
+    client.on('error', (err) => console.error('Redis error', err));
 
     await client.connect();
     return client;

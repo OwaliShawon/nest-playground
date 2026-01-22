@@ -9,4 +9,4 @@ import { InvoiceDetail } from './entities/invoice_detail.entity';
   controllers: [InvoiceDetailsController],
   providers: [InvoiceDetailsService],
 })
-export class InvoiceDetailsModule { }
+export class InvoiceDetailsModule {}

@@ -155,14 +155,11 @@ export class ExampleController {
   @Post('publish-to-queue')
   async publishToQueue(@Body() payload: any) {
     try {
-      const result = await this.publisherService.publishToQueue(
-        'task_queue',
-        {
-          taskId: payload.taskId,
-          data: payload.data,
-          timestamp: new Date(),
-        },
-      );
+      const result = await this.publisherService.publishToQueue('task_queue', {
+        taskId: payload.taskId,
+        data: payload.data,
+        timestamp: new Date(),
+      });
 
       return { success: result, message: 'Message published to queue' };
     } catch (error) {

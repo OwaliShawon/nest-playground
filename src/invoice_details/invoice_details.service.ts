@@ -10,22 +10,22 @@ export class InvoiceDetailsService {
   constructor(
     @InjectRepository(InvoiceDetail)
     private invoiceDetailRepository: Repository<InvoiceDetail>,
-    private dataSource: DataSource
-  ) { }
+    private dataSource: DataSource,
+  ) {}
 
   async create(createInvoiceDetailDto: CreateInvoiceDetailDto) {
     try {
       return this.invoiceDetailRepository.save(createInvoiceDetailDto);
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
   findAll() {
     return this.invoiceDetailRepository.find({
       relations: {
-        invoiceMaster: true
-      }
+        invoiceMaster: true,
+      },
     });
   }
 

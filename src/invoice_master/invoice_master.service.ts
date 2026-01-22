@@ -7,26 +7,25 @@ import { InvoiceMaster } from './entities/invoice_master.entity';
 
 @Injectable()
 export class InvoiceMasterService {
-
   constructor(
     @InjectRepository(InvoiceMaster)
     private invoiceMasterRepository: Repository<InvoiceMaster>,
-    private dataSource: DataSource
-  ) { }
+    private dataSource: DataSource,
+  ) {}
 
   async create(createInvoiceMasterDto: CreateInvoiceMasterDto) {
     try {
       return this.invoiceMasterRepository.save(createInvoiceMasterDto);
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
   findAll() {
     return this.invoiceMasterRepository.find({
       relations: {
-        invoiceDetails: true
-      }
+        invoiceDetails: true,
+      },
     });
   }
 

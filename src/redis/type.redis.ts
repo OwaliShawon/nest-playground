@@ -1,4 +1,4 @@
 export enum RedisType {
-    JSON = 'JSON',
-    HASH = 'HASH',
+  JSON = 'JSON',
+  HASH = 'HASH',
 }

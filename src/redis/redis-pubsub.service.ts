@@ -48,7 +48,7 @@ export class RedisPubSubService implements OnModuleDestroy {
   async unsubscribe(channel: string): Promise<void> {
     const key = `sub:${channel}`;
     const subscriber = this.subscribers.get(key);
-    
+
     if (subscriber) {
       await subscriber.unsubscribe(channel);
       await subscriber.quit();
@@ -62,7 +62,7 @@ export class RedisPubSubService implements OnModuleDestroy {
   async pUnsubscribe(pattern: string): Promise<void> {
     const key = `psub:${pattern}`;
     const subscriber = this.subscribers.get(key);
-    
+
     if (subscriber) {
       await subscriber.pUnsubscribe(pattern);
       await subscriber.quit();

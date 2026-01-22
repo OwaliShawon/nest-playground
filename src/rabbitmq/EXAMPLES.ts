@@ -26,11 +26,19 @@ export class OrderProcessingService implements OnModuleInit {
 
     // Queue for payment processing
     await this.rabbitMQService.assertQueue('payment_queue');
-    await this.rabbitMQService.bindQueue('payment_queue', 'orders', 'order.created');
+    await this.rabbitMQService.bindQueue(
+      'payment_queue',
+      'orders',
+      'order.created',
+    );
 
     // Queue for inventory updates
     await this.rabbitMQService.assertQueue('inventory_queue');
-    await this.rabbitMQService.bindQueue('inventory_queue', 'orders', 'order.created');
+    await this.rabbitMQService.bindQueue(
+      'inventory_queue',
+      'orders',
+      'order.created',
+    );
 
     // Queue for notifications
     await this.rabbitMQService.assertQueue('notification_queue');
@@ -321,10 +329,7 @@ export class BroadcastService implements OnModuleInit {
 
   private async setupBroadcasting() {
     // Fanout exchange broadcasts to all interested parties
-    await this.rabbitMQService.assertExchange(
-      'system_notifications',
-      'fanout',
-    );
+    await this.rabbitMQService.assertExchange('system_notifications', 'fanout');
 
     // Email service queue
     await this.rabbitMQService.assertQueue('notifications_email');
@@ -386,16 +391,12 @@ export class BroadcastService implements OnModuleInit {
 
   async broadcast(title: string, message: string, metadata: any = {}) {
     // All subscribers receive this
-    await this.publisherService.publishToExchange(
-      'system_notifications',
-      '',
-      {
-        title,
-        message,
-        metadata,
-        timestamp: new Date(),
-      },
-    );
+    await this.publisherService.publishToExchange('system_notifications', '', {
+      title,
+      message,
+      metadata,
+      timestamp: new Date(),
+    });
   }
 }
 

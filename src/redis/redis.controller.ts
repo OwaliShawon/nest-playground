@@ -5,7 +5,7 @@ import { ApiBody, ApiTags } from '@nestjs/swagger';
 @ApiTags('Redis')
 @Controller('redis')
 export class RedisController {
-  constructor(private readonly redis: RedisService) { }
+  constructor(private readonly redis: RedisService) {}
 
   @Get('ping')
   ping() {
@@ -13,7 +13,9 @@ export class RedisController {
   }
 
   @Post('hash/:key')
-  @ApiBody({ schema: { type: 'object', additionalProperties: { type: 'string' } } })
+  @ApiBody({
+    schema: { type: 'object', additionalProperties: { type: 'string' } },
+  })
   setHash(@Param('key') key: string, @Body() body: Record<string, string>) {
     return this.redis.hSet(key, body);
   }
@@ -44,7 +46,11 @@ export class RedisController {
   }
 
   @Get('ft/search/key/:index')
-  searchOnKey(@Param('index') index: string, @Query('key') key?: string, @Query('q') q?: string) {
+  searchOnKey(
+    @Param('index') index: string,
+    @Query('key') key?: string,
+    @Query('q') q?: string,
+  ) {
     return this.redis.searchOnKey(index, key || '*', q || '*');
   }
 
@@ -56,13 +62,23 @@ export class RedisController {
   // ==================== LIST OPERATIONS ====================
 
   @Post('list/:key/lpush')
-  @ApiBody({ schema: { type: 'object', properties: { values: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { values: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   lPush(@Param('key') key: string, @Body() body: { values: string[] }) {
     return this.redis.lPush(key, ...body.values);
   }
 
   @Post('list/:key/rpush')
-  @ApiBody({ schema: { type: 'object', properties: { values: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { values: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   rPush(@Param('key') key: string, @Body() body: { values: string[] }) {
     return this.redis.rPush(key, ...body.values);
   }
@@ -81,7 +97,7 @@ export class RedisController {
   lRange(
     @Param('key') key: string,
     @Query('start') start: string = '0',
-    @Query('stop') stop: string = '-1'
+    @Query('stop') stop: string = '-1',
   ) {
     return this.redis.lRange(key, parseInt(start), parseInt(stop));
   }
@@ -97,27 +113,53 @@ export class RedisController {
   }
 
   @Post('list/:key/trim')
-  @ApiBody({ schema: { type: 'object', properties: { start: { type: 'number' }, stop: { type: 'number' } } } })
-  lTrim(@Param('key') key: string, @Body() body: { start: number; stop: number }) {
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { start: { type: 'number' }, stop: { type: 'number' } },
+    },
+  })
+  lTrim(
+    @Param('key') key: string,
+    @Body() body: { start: number; stop: number },
+  ) {
     return this.redis.lTrim(key, body.start, body.stop);
   }
 
   @Post('list/:key/rem')
-  @ApiBody({ schema: { type: 'object', properties: { count: { type: 'number' }, value: { type: 'string' } } } })
-  lRem(@Param('key') key: string, @Body() body: { count: number; value: string }) {
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { count: { type: 'number' }, value: { type: 'string' } },
+    },
+  })
+  lRem(
+    @Param('key') key: string,
+    @Body() body: { count: number; value: string },
+  ) {
     return this.redis.lRem(key, body.count, body.value);
   }
 
   // ==================== SET OPERATIONS ====================
 
   @Post('set/:key/add')
-  @ApiBody({ schema: { type: 'object', properties: { members: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { members: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   sAdd(@Param('key') key: string, @Body() body: { members: string[] }) {
     return this.redis.sAdd(key, ...body.members);
   }
 
   @Post('set/:key/rem')
-  @ApiBody({ schema: { type: 'object', properties: { members: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { members: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   sRem(@Param('key') key: string, @Body() body: { members: string[] }) {
     return this.redis.sRem(key, ...body.members);
   }
@@ -148,19 +190,34 @@ export class RedisController {
   }
 
   @Post('set/diff')
-  @ApiBody({ schema: { type: 'object', properties: { keys: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { keys: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   sDiff(@Body() body: { keys: string[] }) {
     return this.redis.sDiff(body.keys);
   }
 
   @Post('set/inter')
-  @ApiBody({ schema: { type: 'object', properties: { keys: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { keys: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   sInter(@Body() body: { keys: string[] }) {
     return this.redis.sInter(body.keys);
   }
 
   @Post('set/union')
-  @ApiBody({ schema: { type: 'object', properties: { keys: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { keys: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   sUnion(@Body() body: { keys: string[] }) {
     return this.redis.sUnion(body.keys);
   }
@@ -178,19 +235,27 @@ export class RedisController {
             type: 'object',
             properties: {
               score: { type: 'number' },
-              value: { type: 'string' }
-            }
-          }
-        }
-      }
-    }
+              value: { type: 'string' },
+            },
+          },
+        },
+      },
+    },
   })
-  zAdd(@Param('key') key: string, @Body() body: { members: Array<{ score: number; value: string }> }) {
+  zAdd(
+    @Param('key') key: string,
+    @Body() body: { members: Array<{ score: number; value: string }> },
+  ) {
     return this.redis.zAdd(key, body.members);
   }
 
   @Post('zset/:key/rem')
-  @ApiBody({ schema: { type: 'object', properties: { members: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { members: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   zRem(@Param('key') key: string, @Body() body: { members: string[] }) {
     return this.redis.zRem(key, ...body.members);
   }
@@ -200,9 +265,14 @@ export class RedisController {
     @Param('key') key: string,
     @Query('start') start: string = '0',
     @Query('stop') stop: string = '-1',
-    @Query('withScores') withScores?: string
+    @Query('withScores') withScores?: string,
   ) {
-    return this.redis.zRange(key, parseInt(start), parseInt(stop), withScores === 'true');
+    return this.redis.zRange(
+      key,
+      parseInt(start),
+      parseInt(stop),
+      withScores === 'true',
+    );
   }
 
   @Get('zset/:key/rangebyscore')
@@ -210,7 +280,7 @@ export class RedisController {
     @Param('key') key: string,
     @Query('min') min: string = '-inf',
     @Query('max') max: string = '+inf',
-    @Query('withScores') withScores?: string
+    @Query('withScores') withScores?: string,
   ) {
     const minVal = isNaN(parseFloat(min)) ? min : parseFloat(min);
     const maxVal = isNaN(parseFloat(max)) ? max : parseFloat(max);
@@ -238,8 +308,16 @@ export class RedisController {
   }
 
   @Post('zset/:key/incrby')
-  @ApiBody({ schema: { type: 'object', properties: { increment: { type: 'number' }, member: { type: 'string' } } } })
-  zIncrBy(@Param('key') key: string, @Body() body: { increment: number; member: string }) {
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { increment: { type: 'number' }, member: { type: 'string' } },
+    },
+  })
+  zIncrBy(
+    @Param('key') key: string,
+    @Body() body: { increment: number; member: string },
+  ) {
     return this.redis.zIncrBy(key, body.increment, body.member);
   }
 
@@ -248,16 +326,21 @@ export class RedisController {
     @Param('key') key: string,
     @Query('start') start: string = '0',
     @Query('stop') stop: string = '-1',
-    @Query('withScores') withScores?: string
+    @Query('withScores') withScores?: string,
   ) {
-    return this.redis.zRevRange(key, parseInt(start), parseInt(stop), withScores === 'true');
+    return this.redis.zRevRange(
+      key,
+      parseInt(start),
+      parseInt(stop),
+      withScores === 'true',
+    );
   }
 
   @Get('zset/:key/count')
   zCount(
     @Param('key') key: string,
     @Query('min') min: string = '-inf',
-    @Query('max') max: string = '+inf'
+    @Query('max') max: string = '+inf',
   ) {
     const minVal = isNaN(parseFloat(min)) ? min : parseFloat(min);
     const maxVal = isNaN(parseFloat(max)) ? max : parseFloat(max);
@@ -267,8 +350,13 @@ export class RedisController {
   // ==================== PUB/SUB OPERATIONS ====================
 
   @Post('pubsub/publish/:channel')
-  @ApiBody({ schema: { type: 'object', properties: { message: { type: 'string' } } } })
-  publish(@Param('channel') channel: string, @Body() body: { message: string }) {
+  @ApiBody({
+    schema: { type: 'object', properties: { message: { type: 'string' } } },
+  })
+  publish(
+    @Param('channel') channel: string,
+    @Body() body: { message: string },
+  ) {
     return this.redis.publish(channel, body.message);
   }
 
@@ -278,7 +366,12 @@ export class RedisController {
   }
 
   @Post('pubsub/numsub')
-  @ApiBody({ schema: { type: 'object', properties: { channels: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { channels: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   pubSubNumSub(@Body() body: { channels: string[] }) {
     return this.redis.pubSubNumSub(...body.channels);
   }

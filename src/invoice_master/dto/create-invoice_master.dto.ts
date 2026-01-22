@@ -1,12 +1,12 @@
-import { Type } from "class-transformer";
+import { Type } from 'class-transformer';
 import {
   IsArray,
   IsDateString,
   IsNotEmpty,
   IsString,
-  ValidateNested
-} from "class-validator";
-import { CreateInvoiceDetailDto } from "src/invoice_details/dto/create-invoice_detail.dto";
+  ValidateNested,
+} from 'class-validator';
+import { CreateInvoiceDetailDto } from 'src/invoice_details/dto/create-invoice_detail.dto';
 
 export class CreateInvoiceMasterDto {
   @IsString()

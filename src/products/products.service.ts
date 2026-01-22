@@ -14,11 +14,10 @@ export class ProductsService {
     private readonly repository: Repository<Product>,
     @Inject(CACHE_MANAGER)
     private cacheManager: Cache,
-
-  ) { }
+  ) {}
 
   create(createProductDto: any) {
-    return this.repository.save(createProductDto)
+    return this.repository.save(createProductDto);
   }
 
   // findAll() {
@@ -38,7 +37,9 @@ export class ProductsService {
     let whereApplied = false;
 
     if (filter?.quarter !== undefined && filter?.quarter !== null) {
-      qb.where(':quarter = ANY(product.pay_by_quarter)', { quarter: filter.quarter });
+      qb.where(':quarter = ANY(product.pay_by_quarter)', {
+        quarter: filter.quarter,
+      });
       whereApplied = true;
     }
 
@@ -59,13 +60,11 @@ export class ProductsService {
   WHERE pay_by_quarter @> ARRAY[2];
 `);
 
-
     // await this.cacheManager.set('custom_key', await qb.getMany());
     // console.log('Query Execution Plan:', result);
 
     // const value = await this.cacheManager.get('custom_key');
     // console.log('Cached Value:', value);
-
 
     return qb.getMany();
   }
@@ -86,4 +85,3 @@ export class ProductsService {
     return `This action removes a #${id} product`;
   }
 }
-

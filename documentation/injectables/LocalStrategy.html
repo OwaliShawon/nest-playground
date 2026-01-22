@@ -186,7 +186,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/auth/strategis/local.strategy.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/auth/strategis/local.strategy.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -251,8 +251,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/auth/strategis/local.strategy.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="12"
+                                    class="link-to-prism">src/auth/strategis/local.strategy.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -323,20 +323,20 @@ import { AuthService } from &#x27;../auth.service&#x27;;
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
-    constructor(private authService: AuthService) {
-        super();
-    }
+  constructor(private authService: AuthService) {
+    super();
+  }
 
-    async validate(username: string, password: string): Promise&lt;any&gt; {
-        // console.log(&quot;heree&quot;, username, password)
-        const user &#x3D; await this.authService.validateUser(username, password);
-        console.log(user);
+  async validate(username: string, password: string): Promise&lt;any&gt; {
+    // console.log(&quot;heree&quot;, username, password)
+    const user &#x3D; await this.authService.validateUser(username, password);
+    console.log(user);
 
-        if (!user) {
-            throw new UnauthorizedException();
-        }
-        return user;
+    if (!user) {
+      throw new UnauthorizedException();
     }
+    return user;
+  }
 }
 </code></pre>
     </div>

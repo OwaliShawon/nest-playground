@@ -164,28 +164,31 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { createZodDto } from &#x27;nestjs-zod&#x27;
-import { z } from &#x27;zod&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { createZodDto } from &#x27;nestjs-zod&#x27;;
+import { z } from &#x27;zod&#x27;;
 
 const CredentialsSchema &#x3D; z.object({
-    test: z.object({
-        name: z.string(),
+  test: z.object({
+    name: z.string(),
+  }),
+  username: z.string(),
+  password: z.string(),
+  arrtest: z.array(
+    z.object({
+      sim: z.string(),
+      solution: z.number(),
+      nested: z.object({
+        type: z.boolean(),
+        lol: z.float32(),
+        date: z.iso.date().transform((d) &#x3D;&gt; new Date(d)),
+      }),
     }),
-    username: z.string(),
-    password: z.string(),
-    arrtest: z.array(z.object({
-        sim: z.string(),
-        solution: z.number(),
-        nested: z.object({
-            type: z.boolean(),
-            lol: z.float32(),
-            date: z.iso.date().transform(d &#x3D;&gt; new Date(d))
-        })
-    }))
-})
+  ),
+});
 
 // class is required for using DTO as a type
-export class CreateProductDto extends createZodDto(CredentialsSchema) { }</code></pre>
+export class CreateProductDto extends createZodDto(CredentialsSchema) {}
+</code></pre>
     </div>
 </div>
 

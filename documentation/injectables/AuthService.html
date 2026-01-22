@@ -184,7 +184,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/auth/auth.service.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/auth/auth.service.ts:6</a></div>
                             </td>
                         </tr>
 
@@ -261,8 +261,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="22"
-                                    class="link-to-prism">src/auth/auth.service.ts:22</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/auth/auth.service.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -330,8 +330,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="10"
-                                    class="link-to-prism">src/auth/auth.service.ts:10</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="12"
+                                    class="link-to-prism">src/auth/auth.service.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -401,26 +401,29 @@ import { JwtService } from &#x27;@nestjs/jwt&#x27;;
 
 @Injectable()
 export class AuthService {
-    constructor(private usersService: UsersService, private jwtService: JwtService) { }
+  constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService,
+  ) {}
 
-    async validateUser(username: string, pass: string) {
-        const user &#x3D; await this.usersService.findOne(username);
-        if (user?.password !&#x3D;&#x3D; pass) {
-            throw new UnauthorizedException();
-        }
-        if (user &amp;&amp; user.password &#x3D;&#x3D;&#x3D; pass) {
-            const { password, ...result } &#x3D; user;
-            return result;
-        }
-        return null;
+  async validateUser(username: string, pass: string) {
+    const user &#x3D; await this.usersService.findOne(username);
+    if (user?.password !&#x3D;&#x3D; pass) {
+      throw new UnauthorizedException();
     }
+    if (user &amp;&amp; user.password &#x3D;&#x3D;&#x3D; pass) {
+      const { password, ...result } &#x3D; user;
+      return result;
+    }
+    return null;
+  }
 
-    async login(user: any) {
-        const payload &#x3D; { username: user.username, sub: user.userId };
-        return {
-            access_token: this.jwtService.sign(payload),
-        };
-    }
+  async login(user: any) {
+    const payload &#x3D; { username: user.username, sub: user.userId };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
 }
 </code></pre>
     </div>

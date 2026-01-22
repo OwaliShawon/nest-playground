@@ -132,12 +132,6 @@
         <p class="comment">
             <code>src/products/products.controller.ts</code>
         </p>
-            <p class="comment">
-                <h3>Prefix</h3>
-            </p>
-            <p class="comment">
-                <code>products</code>
-            </p>
 
 
 
@@ -165,7 +159,13 @@
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#findByFilter" >findByFilter</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -213,7 +213,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(createProductDto: <a href="../classes/CreateProductDto.html" target="_self">CreateProductDto</a>)</code>
+                    <code>create(createProductDto: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
@@ -221,14 +221,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br />@UsePipes(ZodValidationPipe)<br />@ApiResponse({status: 201, type: CreateProductDto})<br /></code>
+                    <code>@Post()<br />@UsePipes(ZodValidationPipe)<br />@ApiResponse({status: 201})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/products/products.controller.ts:18</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/products/products.controller.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -251,7 +251,7 @@
                                         <tr>
                                                 <td>createProductDto</td>
                                             <td>
-                                                            <code><a href="../classes/CreateProductDto.html" target="_self" >CreateProductDto</a></code>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
@@ -281,6 +281,7 @@
                     <a name="findAll"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -297,14 +298,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@Get()<br />@CacheKey(&#x27;custom_key&#x27;)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/products/products.controller.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/products/products.controller.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -316,6 +317,83 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findByFilter"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>findByFilter</b></span>
+                        <a href="#findByFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findByFilter(filter: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;search&#x27;)<br />@UsePipes(ZodValidationPipe)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/products/products.controller.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>filter</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -349,8 +427,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/products/products.controller.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/products/products.controller.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -425,8 +503,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/products/products.controller.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/products/products.controller.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -501,8 +579,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/products/products.controller.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/products/products.controller.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -564,14 +642,26 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UsePipes,
+  Scope,
+} from &#x27;@nestjs/common&#x27;;
 import { ProductsService } from &#x27;./products.service&#x27;;
 import { CreateProductDto } from &#x27;./dto/create-product.dto&#x27;;
 import { UpdateProductDto } from &#x27;./dto/update-product.dto&#x27;;
 import { ZodValidationPipe } from &#x27;nestjs-zod&#x27;;
 import { ApiResponse } from &#x27;@nestjs/swagger&#x27;;
+import { FindProductsDto } from &#x27;./dto/find-products.dto&#x27;;
+import { CacheKey, CacheTTL } from &#x27;@nestjs/cache-manager&#x27;;
 
-@Controller(&#x27;products&#x27;)
+@Controller({ scope: Scope.DEFAULT, path: &#x27;products&#x27; })
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
@@ -579,15 +669,22 @@ export class ProductsController {
   @UsePipes(ZodValidationPipe)
   @ApiResponse({
     status: 201,
-    type: CreateProductDto
   })
-  create(@Body() createProductDto: CreateProductDto) {
+  create(@Body() createProductDto: any) {
     return this.productsService.create(createProductDto);
   }
 
   @Get()
+  @CacheKey(&#x27;custom_key&#x27;)
+  // @CacheTTL(20)
   findAll() {
     return this.productsService.findAll();
+  }
+
+  @Post(&#x27;search&#x27;)
+  @UsePipes(ZodValidationPipe)
+  findByFilter(@Body() filter: any) {
+    return this.productsService.findAll(filter as any);
   }
 
   @Get(&#x27;:id&#x27;)

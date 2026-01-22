@@ -229,8 +229,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="19"
-                                    class="link-to-prism">src/orders/orders.controller.ts:19</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/orders/orders.controller.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -307,8 +307,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/orders/orders.controller.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/orders/orders.controller.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -353,8 +353,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/orders/orders.controller.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/orders/orders.controller.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -429,8 +429,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/orders/orders.controller.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/orders/orders.controller.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -475,8 +475,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/orders/orders.controller.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/orders/orders.controller.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -551,8 +551,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/orders/orders.controller.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/orders/orders.controller.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -614,7 +614,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from &#x27;@nestjs/common&#x27;;
 import { OrdersService } from &#x27;./orders.service&#x27;;
 import { CreateOrderDto } from &#x27;./dto/create-order.dto&#x27;;
 import { UpdateOrderDto } from &#x27;./dto/update-order.dto&#x27;;
@@ -629,7 +638,8 @@ export class OrdersController {
   constructor(
     private readonly ordersService: OrdersService,
     private readonly productsService: ProductsService,
-    private readonly testProvider: TestProvider) { }
+    private readonly testProvider: TestProvider,
+  ) {}
 
   @Post()
   create(@Body() createOrderDto: CreateOrderDto) {
@@ -660,7 +670,7 @@ export class OrdersController {
     return this.ordersService.remove(+id);
   }
 
-  @Get(&quot;products&quot;)
+  @Get(&#x27;products&#x27;)
   getProducts() {
     return this.productsService.findAll();
   }

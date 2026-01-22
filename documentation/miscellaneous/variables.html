@@ -130,6 +130,9 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#AppDataSource" title="src/core/databases/database.providers.ts" ><b>AppDataSource</b>&nbsp;&nbsp;&nbsp;(src/.../database.providers.ts)</a>
+                        </li>
+                        <li>
                             <a href="#createUserSchema" title="src/users/dto/create-user.dto.ts" ><b>createUserSchema</b>&nbsp;&nbsp;&nbsp;(src/.../create-user.dto.ts)</a>
                         </li>
                         <li>
@@ -139,10 +142,31 @@
                             <a href="#databaseProviders" title="src/core/databases/database.providers.ts" ><b>databaseProviders</b>&nbsp;&nbsp;&nbsp;(src/.../database.providers.ts)</a>
                         </li>
                         <li>
+                            <a href="#DEFAULT_RABBITMQ_CONFIG" title="src/rabbitmq/rabbitmq.config.ts" ><b>DEFAULT_RABBITMQ_CONFIG</b>&nbsp;&nbsp;&nbsp;(src/.../rabbitmq.config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#dummyUser" title="src/guards/auth.guards.ts" ><b>dummyUser</b>&nbsp;&nbsp;&nbsp;(src/.../auth.guards.ts)</a>
                         </li>
                         <li>
+                            <a href="#FindProductsSchema" title="src/products/dto/find-products.dto.ts" ><b>FindProductsSchema</b>&nbsp;&nbsp;&nbsp;(src/.../find-products.dto.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Handlebars" title="documentation/template-playground/hbs-render.service.ts" ><b>Handlebars</b>&nbsp;&nbsp;&nbsp;(documentation/.../hbs-render.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#JSZip" title="documentation/template-playground/zip-export.service.ts" ><b>JSZip</b>&nbsp;&nbsp;&nbsp;(documentation/.../zip-export.service.ts)</a>
+                        </li>
+                        <li>
                             <a href="#jwtConstants" title="src/auth/constants.ts" ><b>jwtConstants</b>&nbsp;&nbsp;&nbsp;(src/.../constants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#monaco" title="documentation/template-playground/template-editor.service.ts" ><b>monaco</b>&nbsp;&nbsp;&nbsp;(documentation/.../template-editor.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#REDIS_CLIENT" title="src/core/redis/redis.provider.ts" ><b>REDIS_CLIENT</b>&nbsp;&nbsp;&nbsp;(src/.../redis.provider.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#redisProvider" title="src/core/redis/redis.provider.ts" ><b>redisProvider</b>&nbsp;&nbsp;&nbsp;(src/.../redis.provider.ts)</a>
                         </li>
                         <li>
                             <a href="#Roles" title="src/decorators/roles.decorator.ts" ><b>Roles</b>&nbsp;&nbsp;&nbsp;(src/.../roles.decorator.ts)</a>
@@ -157,6 +181,80 @@
     </table>
 </section>
 
+    <h3>src/core/databases/database.providers.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AppDataSource"></a>
+                    <span class="name">
+                        <span ><b>AppDataSource</b></span>
+                        <a href="#AppDataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new DataSource({
+  type: &#x27;postgres&#x27;,
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  entities: [User, Product, InvoiceMaster, InvoiceDetail],
+  migrations:
+    process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;production&#x27;
+      ? [&#x27;dist/core/databases/migrations/*-migrations.js&#x27;]
+      : [&#x27;src/core/databases/migrations/*-migrations.ts&#x27;],
+  synchronize: true,
+  logging: true,
+})</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="databaseProviders"></a>
+                    <span class="name">
+                        <span ><b>databaseProviders</b></span>
+                        <a href="#databaseProviders"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    provide: DataSource,
+    useValue: AppDataSource,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/users/dto/create-user.dto.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -179,15 +277,15 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>z
-    .object({
-        id: z.number(),
-        name: z.string(),
-        username: z.string(),
-        password: z.string(),
-        description: z.string(),
-        email: z.email()
-    })
-    .required()</code>
+  .object({
+    id: z.number(),
+    name: z.string(),
+    username: z.string(),
+    password: z.string(),
+    description: z.string(),
+    email: z.email(),
+  })
+  .required()</code>
                     </td>
                 </tr>
 
@@ -217,20 +315,22 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>z.object({
-    test: z.object({
-        name: z.string(),
+  test: z.object({
+    name: z.string(),
+  }),
+  username: z.string(),
+  password: z.string(),
+  arrtest: z.array(
+    z.object({
+      sim: z.string(),
+      solution: z.number(),
+      nested: z.object({
+        type: z.boolean(),
+        lol: z.float32(),
+        date: z.iso.date().transform((d) &#x3D;&gt; new Date(d)),
+      }),
     }),
-    username: z.string(),
-    password: z.string(),
-    arrtest: z.array(z.object({
-        sim: z.string(),
-        solution: z.number(),
-        nested: z.object({
-            type: z.boolean(),
-            lol: z.float32(),
-            date: z.iso.date().transform(d &#x3D;&gt; new Date(d))
-        })
-    }))
+  ),
 })</code>
                     </td>
                 </tr>
@@ -239,49 +339,34 @@
         </tbody>
     </table>
 </section>
-    <h3>src/core/databases/database.providers.ts</h3>
+    <h3>src/rabbitmq/rabbitmq.config.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="databaseProviders"></a>
+                    <a name="DEFAULT_RABBITMQ_CONFIG"></a>
                     <span class="name">
-                        <span ><b>databaseProviders</b></span>
-                        <a href="#databaseProviders"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>DEFAULT_RABBITMQ_CONFIG</b></span>
+                        <a href="#DEFAULT_RABBITMQ_CONFIG"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>[]</code>
+                        <i>Type : </i>        <code><a href="../interfaces/RabbitMQConfig.html" target="_self" >RabbitMQConfig</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-    {
-        provide: &#x27;DATA_SOURCE&#x27;,
-        inject: [ConfigService],
-        useFactory: async (config: ConfigService) &#x3D;&gt; {
-            const dataSource &#x3D; new DataSource({
-                type: &#x27;postgres&#x27;,
-                host: config.get&lt;string&gt;(&#x27;DB_HOST&#x27;),
-                port: config.get&lt;number&gt;(&#x27;DB_PORT&#x27;),
-                username: config.get&lt;string&gt;(&#x27;DB_USERNAME&#x27;),
-                password: config.get&lt;string&gt;(&#x27;DB_PASSWORD&#x27;),
-                database: config.get&lt;string&gt;(&#x27;DB_NAME&#x27;),
-                entities: [
-                    __dirname + &#x27;/../**/*.entity{.ts,.js}&#x27;,
-                ],
-                synchronize: true,
-            });
-
-            return dataSource.initialize();
-        },
-    },
-]</code>
+                        <i>Default value : </i><code>{
+  host: process.env.RABBITMQ_HOST || &#x27;localhost&#x27;,
+  port: parseInt(process.env.RABBITMQ_PORT || &#x27;5672&#x27;, 10),
+  username: process.env.RABBITMQ_USER || &#x27;guest&#x27;,
+  password: process.env.RABBITMQ_PASSWORD || &#x27;guest&#x27;,
+  vhost: process.env.RABBITMQ_VHOST || &#x27;/&#x27;,
+}</code>
                     </td>
                 </tr>
 
@@ -311,10 +396,90 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-    id: 1,
-    username: &quot;owalishawon&quot;,
-    role: &quot;admin&quot;
+  id: 1,
+  username: &#x27;owalishawon&#x27;,
+  role: &#x27;admin&#x27;,
 }</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/products/dto/find-products.dto.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FindProductsSchema"></a>
+                    <span class="name">
+                        <span ><b>FindProductsSchema</b></span>
+                        <a href="#FindProductsSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  quarter: z.number().int().positive().optional(),
+  meta: z.array(z.object({ key: z.string(), value: z.string() })).optional(),
+})</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>documentation/template-playground/hbs-render.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Handlebars"></a>
+                    <span class="name">
+                        <span ><b>Handlebars</b></span>
+                        <a href="#Handlebars"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>documentation/template-playground/zip-export.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="JSZip"></a>
+                    <span class="name">
+                        <span ><b>JSZip</b></span>
+                        <a href="#JSZip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
                     </td>
                 </tr>
 
@@ -345,6 +510,97 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
   secret: &#x27;secret&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>documentation/template-playground/template-editor.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="monaco"></a>
+                    <span class="name">
+                        <span ><b>monaco</b></span>
+                        <a href="#monaco"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/core/redis/redis.provider.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REDIS_CLIENT"></a>
+                    <span class="name">
+                        <span ><b>REDIS_CLIENT</b></span>
+                        <a href="#REDIS_CLIENT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;REDIS_CLIENT&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="redisProvider"></a>
+                    <span class="name">
+                        <span ><b>redisProvider</b></span>
+                        <a href="#redisProvider"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Provider</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  provide: REDIS_CLIENT,
+  useFactory: async (): Promise&lt;RedisClientType&gt; &#x3D;&gt; {
+    const client: RedisClientType &#x3D; createClient({
+      url: &#x27;redis://localhost:6379&#x27;,
+    });
+
+    client.on(&#x27;error&#x27;, (err) &#x3D;&gt; console.error(&#x27;Redis error&#x27;, err));
+
+    await client.connect();
+    return client;
+  },
 }</code>
                     </td>
                 </tr>

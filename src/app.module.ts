@@ -22,6 +22,9 @@ import { TasksModule } from './tasks/tasks.module';
 import { AlsModule } from './als/als.module';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import { CatsModule } from './cats/cats.module';
+import { ClsModule } from './core/cls/cls.module';
+import { ContextMiddleware } from './core/cls/cls.middleware';
+import { ContextService } from './core/cls/cls.service';
 
 @Module({
   imports: [
@@ -44,6 +47,9 @@ import { CatsModule } from './cats/cats.module';
           })
           .parse(config),
     }),
+
+    // CLS Module - for request context tracking
+    ClsModule,
 
     // DATABASE
     TypeOrmModule.forRootAsync({
@@ -85,7 +91,7 @@ import { CatsModule } from './cats/cats.module';
     RedisModule,
     CoreRedisModule,
     RabbitMQExampleModule,
-    TasksModule,
+    // TasksModule,
     AlsModule,
     CatsModule,
   ],
@@ -96,10 +102,14 @@ export class AppModule implements NestModule {
   constructor(
     // inject the AsyncLocalStorage in the module constructor,
     private readonly als: AsyncLocalStorage<any>,
+    private readonly contextService: ContextService,
   ) {}
 
   configure(consumer: MiddlewareConsumer) {
-    // bind the middleware,
+    // Apply CLS context middleware
+    consumer.apply(ContextMiddleware).forRoutes('*path');
+
+    // bind the old middleware,
     consumer
       .apply((req: any, res: any, next: any) => {
         // populate the store with some default values

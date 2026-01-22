@@ -182,7 +182,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/guards/auth.guards.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/guards/auth.guards.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -245,8 +245,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/guards/auth.guards.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="15"
+                                    class="link-to-prism">src/guards/auth.guards.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -303,37 +303,38 @@ import { Observable } from &#x27;rxjs&#x27;;
 import { Roles } from &#x27;src/decorators/roles.decorator&#x27;;
 
 const dummyUser &#x3D; {
-    id: 1,
-    username: &quot;owalishawon&quot;,
-    role: &quot;admin&quot;
-}
+  id: 1,
+  username: &#x27;owalishawon&#x27;,
+  role: &#x27;admin&#x27;,
+};
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private reflector: Reflector) { }
-    canActivate(
-        context: ExecutionContext,
-    ): boolean | Promise&lt;boolean&gt; | Observable&lt;boolean&gt; {
-        const request &#x3D; context.switchToHttp().getRequest();
-        const roles &#x3D; this.reflector.get(Roles, context.getHandler());
-        console.log(&quot;Roles&quot;, roles)
+  constructor(private reflector: Reflector) {}
+  canActivate(
+    context: ExecutionContext,
+  ): boolean | Promise&lt;boolean&gt; | Observable&lt;boolean&gt; {
+    const request &#x3D; context.switchToHttp().getRequest();
+    const roles &#x3D; this.reflector.getAllAndMerge(Roles, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    const type &#x3D; context.getType();
 
-        const type &#x3D; context.getType()
-        console.log(&quot;Context type&quot;, type)
-        // now will check wth the user role with the metada role
-        // if math true else false
-        return validateRequest(request, roles);
-    }
+    return validateRequest(request, roles);
+  }
 }
 
-function validateRequest(request: any, roles: string[]): boolean | Promise&lt;boolean&gt; | Observable&lt;boolean&gt; {
-    if (roles.includes(dummyUser.role)) {
-        return true
-    } else {
-        return false
-    }
-}
+function validateRequest(
+  request: any,
+  roles: string[],
+): boolean | Promise&lt;boolean&gt; | Observable&lt;boolean&gt; {
+  if (roles.includes(dummyUser.role)) {
+    return true;
+  }
 
+  return false;
+}
 </code></pre>
         </div>
 </div>

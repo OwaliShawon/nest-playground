@@ -1,0 +1,1147 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>practice-nest documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">practice-nest documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >OrderProcessingService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/rabbitmq/EXAMPLES.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createOrder" >createOrder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onModuleInit" >onModuleInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#processPayment" >processPayment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#sendNotification" >sendNotification</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#setupOrderProcessing" >setupOrderProcessing</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateInventory" >updateInventory</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(publisherService: <a href="../injectables/PublisherService.html" target="_self">PublisherService</a>, subscriberService: <a href="../injectables/SubscriberService.html" target="_self">SubscriberService</a>, rabbitMQService: <a href="../injectables/RabbitMQService.html" target="_self">RabbitMQService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rabbitmq/EXAMPLES.ts:12</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>publisherService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PublisherService.html" target="_self" >PublisherService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>subscriberService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SubscriberService.html" target="_self" >SubscriberService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>rabbitMQService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RabbitMQService.html" target="_self" >RabbitMQService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createOrder"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createOrder</b></span>
+                        <a href="#createOrder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createOrder(orderData: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/rabbitmq/EXAMPLES.ts:106</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>orderData</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onModuleInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onModuleInit</b></span>
+                        <a href="#onModuleInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onModuleInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="19"
+                                    class="link-to-prism">src/rabbitmq/EXAMPLES.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processPayment"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>processPayment</b></span>
+                        <a href="#processPayment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>processPayment(orderData: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/rabbitmq/EXAMPLES.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>orderData</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sendNotification"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>sendNotification</b></span>
+                        <a href="#sendNotification"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>sendNotification(message: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="135"
+                                    class="link-to-prism">src/rabbitmq/EXAMPLES.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>message</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupOrderProcessing"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>setupOrderProcessing</b></span>
+                        <a href="#setupOrderProcessing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupOrderProcessing()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="23"
+                                    class="link-to-prism">src/rabbitmq/EXAMPLES.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateInventory"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>updateInventory</b></span>
+                        <a href="#updateInventory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateInventory(orderData: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/rabbitmq/EXAMPLES.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>orderData</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnModuleInit } from &#x27;@nestjs/common&#x27;;
+import { PublisherService } from &#x27;./publisher.service&#x27;;
+import { SubscriberService } from &#x27;./subscriber.service&#x27;;
+import { RabbitMQService } from &#x27;./rabbitmq.service&#x27;;
+
+@Injectable()
+export class OrderProcessingService implements OnModuleInit {
+  constructor(
+    private publisherService: PublisherService,
+    private subscriberService: SubscriberService,
+    private rabbitMQService: RabbitMQService,
+  ) {}
+
+  async onModuleInit() {
+    await this.setupOrderProcessing();
+  }
+
+  private async setupOrderProcessing() {
+    // Setup topic exchange for orders
+    await this.rabbitMQService.assertExchange(&#x27;orders&#x27;, &#x27;topic&#x27;);
+
+    // Queue for payment processing
+    await this.rabbitMQService.assertQueue(&#x27;payment_queue&#x27;);
+    await this.rabbitMQService.bindQueue(
+      &#x27;payment_queue&#x27;,
+      &#x27;orders&#x27;,
+      &#x27;order.created&#x27;,
+    );
+
+    // Queue for inventory updates
+    await this.rabbitMQService.assertQueue(&#x27;inventory_queue&#x27;);
+    await this.rabbitMQService.bindQueue(
+      &#x27;inventory_queue&#x27;,
+      &#x27;orders&#x27;,
+      &#x27;order.created&#x27;,
+    );
+
+    // Queue for notifications
+    await this.rabbitMQService.assertQueue(&#x27;notification_queue&#x27;);
+    await this.rabbitMQService.bindQueue(
+      &#x27;notification_queue&#x27;,
+      &#x27;orders&#x27;,
+      &#x27;order.*&#x27;, // all order events
+    );
+
+    // Payment handler
+    await this.subscriberService.subscribeToExchange(
+      &#x27;orders&#x27;,
+      &#x27;payment_queue&#x27;,
+      &#x27;order.created&#x27;,
+      async (message, ack, nack) &#x3D;&gt; {
+        try {
+          console.log(&#x27;Processing payment for order:&#x27;, message.orderId);
+          // Process payment
+          await this.processPayment(message);
+          ack();
+        } catch (error) {
+          console.error(&#x27;Payment processing failed:&#x27;, error);
+          nack(true); // Requeue
+        }
+      },
+    );
+
+    // Inventory handler
+    await this.subscriberService.subscribeToExchange(
+      &#x27;orders&#x27;,
+      &#x27;inventory_queue&#x27;,
+      &#x27;order.created&#x27;,
+      async (message, ack, nack) &#x3D;&gt; {
+        try {
+          console.log(&#x27;Updating inventory for order:&#x27;, message.orderId);
+          // Update inventory
+          await this.updateInventory(message);
+          ack();
+        } catch (error) {
+          console.error(&#x27;Inventory update failed:&#x27;, error);
+          nack(true);
+        }
+      },
+    );
+
+    // Notification handler
+    await this.subscriberService.subscribeToExchange(
+      &#x27;orders&#x27;,
+      &#x27;notification_queue&#x27;,
+      &#x27;order.*&#x27;,
+      async (message, ack, nack) &#x3D;&gt; {
+        try {
+          console.log(&#x27;Sending notification for order event:&#x27;, message);
+          // Send email/SMS
+          await this.sendNotification(message);
+          ack();
+        } catch (error) {
+          console.error(&#x27;Notification failed:&#x27;, error);
+          nack(true);
+        }
+      },
+    );
+  }
+
+  async createOrder(orderData: any) {
+    // Save order to database
+    const orderId &#x3D; Math.random().toString(36).substr(2, 9);
+
+    // Publish order.created event
+    await this.publisherService.publishToExchange(&#x27;orders&#x27;, &#x27;order.created&#x27;, {
+      orderId,
+      customerId: orderData.customerId,
+      items: orderData.items,
+      total: orderData.total,
+      timestamp: new Date(),
+    });
+
+    // Later, publish order.confirmed event
+    // await this.publisherService.publishToExchange(&#x27;orders&#x27;, &#x27;order.confirmed&#x27;, {...});
+  }
+
+  private async processPayment(orderData: any) {
+    // Simulate payment processing
+    await new Promise((resolve) &#x3D;&gt; setTimeout(resolve, 1000));
+    console.log(&#x27;Payment processed successfully&#x27;);
+  }
+
+  private async updateInventory(orderData: any) {
+    // Simulate inventory update
+    await new Promise((resolve) &#x3D;&gt; setTimeout(resolve, 500));
+    console.log(&#x27;Inventory updated&#x27;);
+  }
+
+  private async sendNotification(message: any) {
+    // Send notification
+    console.log(&#x27;Notification sent to customer&#x27;);
+  }
+}
+
+// EXAMPLE 2: LOG AGGREGATION SYSTEM
+// &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+@Injectable()
+export class LogAggregationService implements OnModuleInit {
+  constructor(
+    private publisherService: PublisherService,
+    private subscriberService: SubscriberService,
+    private rabbitMQService: RabbitMQService,
+  ) {}
+
+  async onModuleInit() {
+    await this.setupLogAggregation();
+  }
+
+  private async setupLogAggregation() {
+    // Topic exchange for logs
+    await this.rabbitMQService.assertExchange(&#x27;logs&#x27;, &#x27;topic&#x27;);
+
+    // Error logs queue
+    await this.rabbitMQService.assertQueue(&#x27;error_logs&#x27;);
+    await this.rabbitMQService.bindQueue(&#x27;error_logs&#x27;, &#x27;logs&#x27;, &#x27;logs.error&#x27;);
+
+    // Warning logs queue
+    await this.rabbitMQService.assertQueue(&#x27;warning_logs&#x27;);
+    await this.rabbitMQService.bindQueue(&#x27;warning_logs&#x27;, &#x27;logs&#x27;, &#x27;logs.warn&#x27;);
+
+    // All logs queue (for archival)
+    await this.rabbitMQService.assertQueue(&#x27;all_logs&#x27;);
+    await this.rabbitMQService.bindQueue(&#x27;all_logs&#x27;, &#x27;logs&#x27;, &#x27;logs.*&#x27;);
+
+    // Error log handler - alerts team
+    await this.subscriberService.subscribeToExchange(
+      &#x27;logs&#x27;,
+      &#x27;error_logs&#x27;,
+      &#x27;logs.error&#x27;,
+      async (message, ack) &#x3D;&gt; {
+        console.error(&#x27;ALERT: &#x27;, message.message);
+        // Send alert to Slack/PagerDuty
+        ack();
+      },
+    );
+
+    // All logs handler - store in database
+    await this.subscriberService.subscribeToExchange(
+      &#x27;logs&#x27;,
+      &#x27;all_logs&#x27;,
+      &#x27;logs.*&#x27;,
+      async (message, ack) &#x3D;&gt; {
+        // Store in database for analysis
+        await this.storeLog(message);
+        ack();
+      },
+    );
+  }
+
+  async logInfo(message: string, metadata: any &#x3D; {}) {
+    await this.publisherService.publishToExchange(&#x27;logs&#x27;, &#x27;logs.info&#x27;, {
+      level: &#x27;info&#x27;,
+      message,
+      metadata,
+      timestamp: new Date(),
+      service: &#x27;my-service&#x27;,
+    });
+  }
+
+  async logError(error: Error, metadata: any &#x3D; {}) {
+    await this.publisherService.publishToExchange(&#x27;logs&#x27;, &#x27;logs.error&#x27;, {
+      level: &#x27;error&#x27;,
+      message: error.message,
+      stack: error.stack,
+      metadata,
+      timestamp: new Date(),
+      service: &#x27;my-service&#x27;,
+    });
+  }
+
+  async logWarning(message: string, metadata: any &#x3D; {}) {
+    await this.publisherService.publishToExchange(&#x27;logs&#x27;, &#x27;logs.warn&#x27;, {
+      level: &#x27;warn&#x27;,
+      message,
+      metadata,
+      timestamp: new Date(),
+      service: &#x27;my-service&#x27;,
+    });
+  }
+
+  private async storeLog(logEntry: any) {
+    // Store in database
+    console.log(&#x27;Storing log:&#x27;, logEntry.message);
+  }
+}
+
+// EXAMPLE 3: BACKGROUND TASK QUEUE
+// &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+@Injectable()
+export class BackgroundTaskService implements OnModuleInit {
+  constructor(
+    private publisherService: PublisherService,
+    private subscriberService: SubscriberService,
+    private rabbitMQService: RabbitMQService,
+  ) {}
+
+  async onModuleInit() {
+    await this.setupBackgroundTasks();
+  }
+
+  private async setupBackgroundTasks() {
+    // Create task queue
+    await this.rabbitMQService.assertQueue(&#x27;background_tasks&#x27;);
+
+    // Multiple workers can subscribe to same queue
+    // Each message will be processed by only one worker
+    for (let i &#x3D; 0; i &lt; 3; i++) {
+      await this.subscriberService.subscribe(
+        &#x27;background_tasks&#x27;,
+        async (message, ack, nack) &#x3D;&gt; {
+          try {
+            console.log(&#x60;Worker ${i} processing task:&#x60;, message);
+            await this.processTask(message);
+            ack();
+          } catch (error) {
+            console.error(&#x60;Worker ${i} failed:&#x60;, error);
+            nack(true); // Requeue for another worker
+          }
+        },
+      );
+    }
+  }
+
+  async enqueueTask(taskType: string, payload: any) {
+    await this.publisherService.publishToQueue(&#x27;background_tasks&#x27;, {
+      taskType,
+      payload,
+      enqueuedAt: new Date(),
+      id: Math.random().toString(36).substr(2, 9),
+    });
+  }
+
+  private async processTask(task: any) {
+    console.log(&#x60;Processing ${task.taskType}:&#x60;, task.payload);
+
+    switch (task.taskType) {
+      case &#x27;send_email&#x27;:
+        await this.sendEmail(task.payload);
+        break;
+      case &#x27;generate_report&#x27;:
+        await this.generateReport(task.payload);
+        break;
+      case &#x27;cleanup&#x27;:
+        await this.cleanup(task.payload);
+        break;
+      default:
+        console.warn(&#x27;Unknown task type:&#x27;, task.taskType);
+    }
+  }
+
+  private async sendEmail(payload: any) {
+    console.log(&#x27;Sending email to:&#x27;, payload.email);
+    // Email sending logic
+  }
+
+  private async generateReport(payload: any) {
+    console.log(&#x27;Generating report for:&#x27;, payload.reportType);
+    // Report generation logic
+  }
+
+  private async cleanup(payload: any) {
+    console.log(&#x27;Cleaning up:&#x27;, payload.target);
+    // Cleanup logic
+  }
+}
+
+// EXAMPLE 4: BROADCAST NOTIFICATIONS
+// &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+@Injectable()
+export class BroadcastService implements OnModuleInit {
+  constructor(
+    private publisherService: PublisherService,
+    private subscriberService: SubscriberService,
+    private rabbitMQService: RabbitMQService,
+  ) {}
+
+  async onModuleInit() {
+    await this.setupBroadcasting();
+  }
+
+  private async setupBroadcasting() {
+    // Fanout exchange broadcasts to all interested parties
+    await this.rabbitMQService.assertExchange(&#x27;system_notifications&#x27;, &#x27;fanout&#x27;);
+
+    // Email service queue
+    await this.rabbitMQService.assertQueue(&#x27;notifications_email&#x27;);
+    await this.rabbitMQService.bindQueue(
+      &#x27;notifications_email&#x27;,
+      &#x27;system_notifications&#x27;,
+      &#x27;&#x27;,
+    );
+
+    // SMS service queue
+    await this.rabbitMQService.assertQueue(&#x27;notifications_sms&#x27;);
+    await this.rabbitMQService.bindQueue(
+      &#x27;notifications_sms&#x27;,
+      &#x27;system_notifications&#x27;,
+      &#x27;&#x27;,
+    );
+
+    // Push notification queue
+    await this.rabbitMQService.assertQueue(&#x27;notifications_push&#x27;);
+    await this.rabbitMQService.bindQueue(
+      &#x27;notifications_push&#x27;,
+      &#x27;system_notifications&#x27;,
+      &#x27;&#x27;,
+    );
+
+    // Email handler
+    await this.subscriberService.subscribeToExchange(
+      &#x27;system_notifications&#x27;,
+      &#x27;notifications_email&#x27;,
+      &#x27;&#x27;,
+      async (message, ack) &#x3D;&gt; {
+        console.log(&#x27;Sending email:&#x27;, message.title);
+        ack();
+      },
+    );
+
+    // SMS handler
+    await this.subscriberService.subscribeToExchange(
+      &#x27;system_notifications&#x27;,
+      &#x27;notifications_sms&#x27;,
+      &#x27;&#x27;,
+      async (message, ack) &#x3D;&gt; {
+        console.log(&#x27;Sending SMS:&#x27;, message.title);
+        ack();
+      },
+    );
+
+    // Push notification handler
+    await this.subscriberService.subscribeToExchange(
+      &#x27;system_notifications&#x27;,
+      &#x27;notifications_push&#x27;,
+      &#x27;&#x27;,
+      async (message, ack) &#x3D;&gt; {
+        console.log(&#x27;Sending push notification:&#x27;, message.title);
+        ack();
+      },
+    );
+  }
+
+  async broadcast(title: string, message: string, metadata: any &#x3D; {}) {
+    // All subscribers receive this
+    await this.publisherService.publishToExchange(&#x27;system_notifications&#x27;, &#x27;&#x27;, {
+      title,
+      message,
+      metadata,
+      timestamp: new Date(),
+    });
+  }
+}
+
+// USAGE IN APP MODULE
+// &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+/*
+import { Module } from &#x27;@nestjs/common&#x27;;
+import { RabbitMQModule } from &#x27;./rabbitmq/rabbitmq.module&#x27;;
+import { OrderProcessingService } from &#x27;./services/order-processing.service&#x27;;
+import { LogAggregationService } from &#x27;./services/log-aggregation.service&#x27;;
+import { BackgroundTaskService } from &#x27;./services/background-task.service&#x27;;
+import { BroadcastService } from &#x27;./services/broadcast.service&#x27;;
+
+@Module({
+  imports: [RabbitMQModule],
+  providers: [
+    OrderProcessingService,
+    LogAggregationService,
+    BackgroundTaskService,
+    BroadcastService,
+  ],
+  exports: [OrderProcessingService],
+})
+export class AppModule {}
+*/
+
+export {};
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'OrderProcessingService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

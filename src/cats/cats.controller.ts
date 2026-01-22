@@ -14,7 +14,7 @@ import { ApiHeader } from '@nestjs/swagger';
 
 @Controller('cats')
 export class CatsController {
-  constructor(private readonly catsService: CatsService) { }
+  constructor(private readonly catsService: CatsService) {}
 
   @Post()
   create(@Body() createCatDto: CreateCatDto) {

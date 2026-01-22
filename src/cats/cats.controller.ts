@@ -10,10 +10,11 @@ import {
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
+import { ApiHeader } from '@nestjs/swagger';
 
 @Controller('cats')
 export class CatsController {
-  constructor(private readonly catsService: CatsService) {}
+  constructor(private readonly catsService: CatsService) { }
 
   @Post()
   create(@Body() createCatDto: CreateCatDto) {
@@ -26,6 +27,11 @@ export class CatsController {
   }
 
   @Get('als-test')
+  @ApiHeader({
+    name: 'x-user-id',
+    description: 'A custom header for demonstration purposes',
+    required: true,
+  })
   alsTest() {
     return this.catsService.alsTest();
   }

@@ -1,0 +1,190 @@
+###
+### Event Sourcing Example - Task Management with Event Replay & Rehydration
+### Test event sourcing pattern with immutable events and state reconstruction
+###
+
+@baseUrl = http://localhost:3000
+
+### ============================================
+### CREATE TASKS (Commands - Record Events)
+### ============================================
+
+### Create Task 1
+POST {{baseUrl}}/event-sourcing/tasks
+Content-Type: application/json
+
+{
+  "title": "Learn Event Sourcing",
+  "description": "Understand immutable events and rehydration"
+}
+
+### Create Task 2
+POST {{baseUrl}}/event-sourcing/tasks
+Content-Type: application/json
+
+{
+  "title": "Build Event Store",
+  "description": "Implement append-only event persistence"
+}
+
+### Create Task 3
+POST {{baseUrl}}/event-sourcing/tasks
+Content-Type: application/json
+
+{
+  "title": "Design Read Models",
+  "description": "Create projections from events"
+}
+
+### ============================================
+### GET TASKS (Queries - Read from Projections)
+### ============================================
+
+### Get All Tasks (from read model projection)
+GET {{baseUrl}}/event-sourcing/tasks
+
+### Get Task Count
+GET {{baseUrl}}/event-sourcing/tasks/count
+
+### Get Incomplete Tasks
+GET {{baseUrl}}/event-sourcing/tasks?completed=false
+
+### Get Completed Tasks
+GET {{baseUrl}}/event-sourcing/tasks?completed=true
+
+### Get Single Task (replace with actual ID)
+GET {{baseUrl}}/event-sourcing/tasks/task_xyz_123
+
+### ============================================
+### GET EVENT HISTORY (Audit Trail)
+### ============================================
+
+### View Complete Event History for Task (replace with actual ID)
+### Shows all events that happened to the task - complete audit trail
+GET {{baseUrl}}/event-sourcing/tasks/task_xyz_123/history
+
+### ============================================
+### MUTATE TASKS (Commands - Produce Events)
+### ============================================
+
+### Update Task (replaces with actual ID)
+PUT {{baseUrl}}/event-sourcing/tasks/task_xyz_123
+Content-Type: application/json
+
+{
+  "title": "Master Event Sourcing",
+  "description": "Understand rehydration and temporal queries"
+}
+
+### ============================================
+### COMPLETE/UNCOMPLETE TASKS
+### ============================================
+
+### Complete a Task (records TaskCompletedEvent)
+PATCH {{baseUrl}}/event-sourcing/tasks/task_xyz_123/complete
+
+### Uncomplete a Task (records TaskUncompletedEvent)
+PATCH {{baseUrl}}/event-sourcing/tasks/task_xyz_123/uncomplete
+
+### ============================================
+### DELETE TASK
+### ============================================
+
+### Delete a Task (records TaskDeletedEvent)
+DELETE {{baseUrl}}/event-sourcing/tasks/task_xyz_123
+
+### ============================================
+### WORKFLOW: EVENT REPLAY & REHYDRATION
+### ============================================
+
+### Step 1: Create Task (records TaskCreatedEvent)
+POST {{baseUrl}}/event-sourcing/tasks
+Content-Type: application/json
+
+{
+  "title": "Event Sourcing Workflow",
+  "description": "Test complete event replay and rehydration"
+}
+
+###
+### Step 2: View Initial Event History (should show TaskCreated)
+### GET {{baseUrl}}/event-sourcing/tasks/TASK_ID/history
+
+###
+### Step 3: Complete Task (records TaskCompletedEvent)
+### PATCH {{baseUrl}}/event-sourcing/tasks/TASK_ID/complete
+
+###
+### Step 4: View Updated History (should show Created + Completed)
+### GET {{baseUrl}}/event-sourcing/tasks/TASK_ID/history
+
+###
+### Step 5: Update Task (records TaskTitleUpdatedEvent + TaskDescriptionUpdatedEvent)
+### PUT {{baseUrl}}/event-sourcing/tasks/TASK_ID
+### {
+###   "title": "Updated Title",
+###   "description": "Updated Description"
+### }
+
+###
+### Step 6: View Final History (all events in order)
+### GET {{baseUrl}}/event-sourcing/tasks/TASK_ID/history
+
+###
+### Step 7: Get Task (internal rehydration from events is transparent)
+### GET {{baseUrl}}/event-sourcing/tasks/TASK_ID
+
+### ============================================
+### DEMONSTRATING REHYDRATION
+### ============================================
+
+# How Event Sourcing Works:
+#
+# Traditional CRUD stores current state:
+#   { id: "1", title: "Task", completed: true, version: 3 }
+#
+# Event Sourcing stores immutable events:
+#   1. TaskCreatedEvent    { id: "1", title: "Task", ... }
+#   2. TaskCompletedEvent  { id: "1", ... }
+#   3. TaskCompletedEvent  { id: "1", ... }
+#
+# When you query a task, it REHYDRATES by replaying events:
+#   state = {}
+#   for event in events:
+#       state = apply(state, event)
+#   return state
+#
+# Result: Get the exact current state by replaying history!
+
+### ============================================
+### KEY DIFFERENCES FROM DDD/CQRS
+### ============================================
+
+# DDD Example (/ddd/tasks):
+# - Stores current state in repository
+# - Uses domain entities with methods
+# - Can switch persistence (memory/ORM)
+
+# CQRS Example (/cqrs/tasks):
+# - Separates commands (write) from queries (read)
+# - Uses Command/Query buses
+# - Still stores current state
+
+# Event Sourcing (/event-sourcing/tasks):
+# - Stores immutable events (not state)
+# - Reconstructs state by replaying events
+# - Complete audit trail built-in
+# - Can query state at any point in time
+# - Read models are projections from events
+
+### ============================================
+### ADVANCED TESTING
+### ============================================
+
+# 1. Create multiple tasks
+# 2. Complete some, uncomplete others
+# 3. Update their titles/descriptions
+# 4. Check event history - you'll see ALL changes
+# 5. Delete a task - still in history with TaskDeletedEvent
+
+# The event history is an immutable audit trail!

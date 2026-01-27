@@ -27,6 +27,7 @@ import { ContextMiddleware } from './core/cls/cls.middleware';
 import { ContextService } from './core/cls/cls.service';
 import { DddExampleModule } from './ddd-example/ddd-example.module';
 import { CqrsExampleModule } from './cqrs-example/cqrs-example.module';
+import { EventSourcingExampleModule } from './event-sourcing-example/event-sourcing-example.module';
 
 @Module({
   imports: [
@@ -98,6 +99,7 @@ import { CqrsExampleModule } from './cqrs-example/cqrs-example.module';
     CatsModule,
     DddExampleModule,
     CqrsExampleModule,
+    EventSourcingExampleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

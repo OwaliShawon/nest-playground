@@ -25,6 +25,7 @@ import { CatsModule } from './cats/cats.module';
 import { ClsModule } from './core/cls/cls.module';
 import { ContextMiddleware } from './core/cls/cls.middleware';
 import { ContextService } from './core/cls/cls.service';
+import { DddExampleModule } from './ddd-example/ddd-example.module';
 
 @Module({
   imports: [
@@ -94,6 +95,7 @@ import { ContextService } from './core/cls/cls.service';
     // TasksModule,
     AlsModule,
     CatsModule,
+    DddExampleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,0 +1,129 @@
+###
+### DDD Example - Task Management
+### Test the hexagonal architecture with dynamic persistence
+###
+
+@baseUrl = http://localhost:3000
+@taskId = task_lv0g44_e1tl8fzz6gj
+
+### Health Check
+GET {{baseUrl}}
+
+### ============================================
+### CREATE TASKS
+### ============================================
+
+### Create Task 1
+POST {{baseUrl}}/ddd/tasks
+Content-Type: application/json
+
+{
+  "title": "Learn DDD Hexagonal Architecture",
+  "description": "Understand the ports and adapters pattern with practical examples"
+}
+
+### Create Task 2
+POST {{baseUrl}}/ddd/tasks
+Content-Type: application/json
+
+{
+  "title": "Implement Clean Architecture",
+  "description": "Apply clean architecture principles to the project"
+}
+
+### Create Task 3
+POST {{baseUrl}}/ddd/tasks
+Content-Type: application/json
+
+{
+  "title": "Write Unit Tests",
+  "description": "Test the domain logic independently from infrastructure"
+}
+
+### ============================================
+### GET TASKS
+### ============================================
+
+### Get All Tasks
+GET {{baseUrl}}/ddd/tasks
+
+### Get Task Count
+GET {{baseUrl}}/ddd/tasks/count
+
+### Get Incomplete Tasks
+GET {{baseUrl}}/ddd/tasks?completed=false
+
+### Get Completed Tasks
+GET {{baseUrl}}/ddd/tasks?completed=true
+
+### Get Single Task (replace with actual ID)
+GET {{baseUrl}}/ddd/tasks/task_lv0g44_e1tl8fzz6gj
+
+### ============================================
+### UPDATE TASKS
+### ============================================
+
+### Update Task (replace with actual ID)
+PUT {{baseUrl}}/ddd/tasks/task_lv0g44_e1tl8fzz6gj
+Content-Type: application/json
+
+{
+  "title": "Learn DDD Hexagonal Architecture - Updated",
+  "description": "Master the ports and adapters pattern with hands-on experience"
+}
+
+### ============================================
+### COMPLETE/UNCOMPLETE TASKS
+### ============================================
+
+### Complete a Task (replace with actual ID)
+PATCH {{baseUrl}}/ddd/tasks/task_lv0g44_e1tl8fzz6gj/complete
+
+### Uncomplete a Task (replace with actual ID)
+PATCH {{baseUrl}}/ddd/tasks/task_lv0g44_e1tl8fzz6gj/uncomplete
+
+### ============================================
+### DELETE TASKS
+### ============================================
+
+### Delete a Task (replace with actual ID)
+DELETE {{baseUrl}}/ddd/tasks/task_lv0g44_e1tl8fzz6gj
+
+### ============================================
+### TEST SCENARIOS
+### ============================================
+
+### Scenario 1: Create and Complete a Task
+POST {{baseUrl}}/ddd/tasks
+Content-Type: application/json
+
+{
+  "title": "Test Task for Completion",
+  "description": "This task will be completed immediately after creation"
+}
+
+### Get the ID from the response above, then complete it
+# PATCH {{baseUrl}}/ddd/tasks/YOUR_TASK_ID_HERE/complete
+
+### Scenario 2: Try to Complete Already Completed Task (Should show error handling)
+# PATCH {{baseUrl}}/ddd/tasks/YOUR_TASK_ID_HERE/complete
+
+### ============================================
+### TESTING PERSISTENCE SWITCHING
+### ============================================
+
+# To test in-memory persistence:
+# 1. Stop your server
+# 2. Run: PERSISTENCE_TYPE=memory npm run start:dev
+# 3. Create tasks using POST requests above
+# 4. Stop the server
+# 5. Start again with: PERSISTENCE_TYPE=memory npm run start:dev
+# 6. GET all tasks - they should be empty (in-memory is volatile)
+
+# To test ORM persistence:
+# 1. Stop your server
+# 2. Run: PERSISTENCE_TYPE=orm npm run start:dev (or just npm run start:dev)
+# 3. Create tasks using POST requests above
+# 4. Stop the server
+# 5. Start again with: PERSISTENCE_TYPE=orm npm run start:dev
+# 6. GET all tasks - they should still be there (persisted to database)

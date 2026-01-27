@@ -1,0 +1,151 @@
+###
+### CQRS Example - Task Management with Command & Query Buses
+### Test CQRS pattern with commands (write) and queries (read)
+###
+
+@baseUrl = http://localhost:3000
+@taskId = 
+
+### ============================================
+### CREATE TASKS (Commands)
+### ============================================
+
+### Create Task 1
+POST {{baseUrl}}/cqrs/tasks
+Content-Type: application/json
+
+{
+  "title": "Learn CQRS Pattern",
+  "description": "Understand command query responsibility segregation"
+}
+
+### Create Task 2
+POST {{baseUrl}}/cqrs/tasks
+Content-Type: application/json
+
+{
+  "title": "Implement Event Sourcing",
+  "description": "Build event store for CQRS system"
+}
+
+### Create Task 3
+POST {{baseUrl}}/cqrs/tasks
+Content-Type: application/json
+
+{
+  "title": "Design Read Models",
+  "description": "Optimize queries with separate read models"
+}
+
+### ============================================
+### GET TASKS (Queries)
+### ============================================
+
+### Get All Tasks
+GET {{baseUrl}}/cqrs/tasks
+
+### Get Task Count
+GET {{baseUrl}}/cqrs/tasks/count
+
+### Get Incomplete Tasks Only
+GET {{baseUrl}}/cqrs/tasks?completed=false
+
+### Get Completed Tasks Only
+GET {{baseUrl}}/cqrs/tasks?completed=true
+
+### Get Single Task (replace ID from response above)
+GET {{baseUrl}}/cqrs/tasks/task_xyz_123
+
+### ============================================
+### UPDATE TASK (Command)
+### ============================================
+
+### Update Task (replace with actual ID)
+PUT {{baseUrl}}/cqrs/tasks/task_xyz_123
+Content-Type: application/json
+
+{
+  "title": "Master CQRS Pattern",
+  "description": "Deep dive into command query separation with hands-on examples"
+}
+
+### ============================================
+### COMPLETE/UNCOMPLETE TASKS (Commands)
+### ============================================
+
+### Complete a Task (replace with actual ID)
+PATCH {{baseUrl}}/cqrs/tasks/task_xyz_123/complete
+
+### Uncomplete a Task (replace with actual ID)
+PATCH {{baseUrl}}/cqrs/tasks/task_xyz_123/uncomplete
+
+### ============================================
+### DELETE TASK (Command)
+### ============================================
+
+### Delete a Task (replace with actual ID)
+DELETE {{baseUrl}}/cqrs/tasks/task_xyz_123
+
+### ============================================
+### WORKFLOW TEST
+### ============================================
+
+### Step 1: Create a task (command)
+POST {{baseUrl}}/cqrs/tasks
+Content-Type: application/json
+
+{
+  "title": "CQRS Workflow Test",
+  "description": "Test complete workflow with commands and queries"
+}
+
+###
+### Step 2: Get all tasks (query) - note the new task
+### GET {{baseUrl}}/cqrs/tasks
+
+###
+### Step 3: Complete the task (command) - replace TASK_ID
+### PATCH {{baseUrl}}/cqrs/tasks/TASK_ID/complete
+
+###
+### Step 4: Get completed tasks (query) - should show completed task
+### GET {{baseUrl}}/cqrs/tasks?completed=true
+
+###
+### Step 5: Uncomplete the task (command) - replace TASK_ID
+### PATCH {{baseUrl}}/cqrs/tasks/TASK_ID/uncomplete
+
+###
+### Step 6: Get incomplete tasks (query) - should show incomplete task again
+### GET {{baseUrl}}/cqrs/tasks?completed=false
+
+###
+### Step 7: Delete the task (command) - replace TASK_ID
+### DELETE {{baseUrl}}/cqrs/tasks/TASK_ID
+
+###
+### Step 8: Get all tasks (query) - task should be gone
+### GET {{baseUrl}}/cqrs/tasks
+
+### ============================================
+### COMPARE WITH DDD ENDPOINTS
+### ============================================
+
+### DDD Endpoints (use same persistence)
+### GET http://localhost:3000/ddd/tasks
+### POST http://localhost:3000/ddd/tasks
+
+### CQRS Endpoints (better separation of concerns)
+### GET http://localhost:3000/cqrs/tasks
+### POST http://localhost:3000/cqrs/tasks
+
+### Both reuse the same:
+### - Domain entities (Task, TaskId)
+### - Repository adapters (in-memory, ORM)
+### - Persistence switching (PERSISTENCE_TYPE env var)
+
+### But CQRS adds:
+### - Command/Query separation
+### - Command & Query buses
+### - Explicit handler pattern
+### - Clear intent in API

@@ -48,6 +48,6 @@ import { TaskEntity } from './infrastructure/persistence/typeorm/entities/task.e
       inject: [InMemoryTaskRepository, TypeOrmTaskRepository],
     },
   ],
-  exports: [TaskService],
+  exports: [TASK_REPOSITORY],
 })
 export class DddExampleModule {}

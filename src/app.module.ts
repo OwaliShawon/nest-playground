@@ -26,6 +26,7 @@ import { ClsModule } from './core/cls/cls.module';
 import { ContextMiddleware } from './core/cls/cls.middleware';
 import { ContextService } from './core/cls/cls.service';
 import { DddExampleModule } from './ddd-example/ddd-example.module';
+import { CqrsExampleModule } from './cqrs-example/cqrs-example.module';
 
 @Module({
   imports: [
@@ -96,6 +97,7 @@ import { DddExampleModule } from './ddd-example/ddd-example.module';
     AlsModule,
     CatsModule,
     DddExampleModule,
+    CqrsExampleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
